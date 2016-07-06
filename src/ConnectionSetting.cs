@@ -28,12 +28,12 @@ namespace Click2Cloud.Samples.AspNetCore.MvcSQLDb
         {
             get
             {
-                if (!(string.IsNullOrEmpty(SQLDB_USER) || string.IsNullOrEmpty(SQLDB_PASSWORD)
-                || string.IsNullOrEmpty(SQLDB_SERVER) || string.IsNullOrEmpty(SQLDB_DATABASE) 
-                || string.IsNullOrEmpty(SQLDB_PORT)))
+                if (!(string.IsNullOrEmpty(DATABASE_USER) || string.IsNullOrEmpty(SA_PASSWORD)
+                || string.IsNullOrEmpty(MSSQL_SERVICE_HOST) || string.IsNullOrEmpty(DATABASE_NAME) 
+                || string.IsNullOrEmpty(MSSQL_SERVICE_PORT)))
                 {
-                    string _connectionString = string.Format("Data Source={0},{4}; Initial Catalog={1}; User ID={2}; Password={3}", SQLDB_SERVER, SQLDB_DATABASE,
-                    SQLDB_USER, SQLDB_PASSWORD, SQLDB_PORT);
+                    string _connectionString = string.Format("Data Source={0},{4}; Initial Catalog={1}; User ID={2}; Password={3}", MSSQL_SERVICE_HOST, DATABASE_NAME,
+                    DATABASE_USER, SA_PASSWORD, MSSQL_SERVICE_PORT);
 
                     return _connectionString;
                 }
@@ -44,65 +44,60 @@ namespace Click2Cloud.Samples.AspNetCore.MvcSQLDb
             }
         }
 
-        private static string SQLDB_SERVER
+        private static string MSSQL_SERVICE_HOST
         {
             get
             {
-                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SQLDB_SERVER")))
+                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("MSSQL_SERVICE_HOST")))
                 {
-                    return Environment.GetEnvironmentVariable("SQLDB_SERVER");
+                    return Environment.GetEnvironmentVariable("MSSQL_SERVICE_HOST");
                 }
 
                 return string.Empty;
             }
         }
 
-        private static string SQLDB_USER
+        private static string DATABASE_USER
         {
             get
             {
-                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SQLDB_USER")))
+                return "sa";
+            }
+        }
+
+        private static string SA_PASSWORD
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SA_PASSWORD")))
                 {
-                    return Environment.GetEnvironmentVariable("SQLDB_USER");
+                    return Environment.GetEnvironmentVariable("SA_PASSWORD");
                 }
 
                 return string.Empty;
             }
         }
 
-        private static string SQLDB_PASSWORD
+        internal static string DATABASE_NAME
         {
             get
             {
-                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SQLDB_PASSWORD")))
+                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DATABASE_NAME")))
                 {
-                    return Environment.GetEnvironmentVariable("SQLDB_PASSWORD");
+                    return Environment.GetEnvironmentVariable("DATABASE_NAME");
                 }
 
                 return string.Empty;
             }
         }
 
-        internal static string SQLDB_DATABASE
+        internal static string MSSQL_SERVICE_PORT
         {
             get
             {
-                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SQLDB_DATABASE")))
+                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("MSSQL_SERVICE_PORT")))
                 {
-                    return Environment.GetEnvironmentVariable("SQLDB_DATABASE");
-                }
-
-                return string.Empty;
-            }
-        }
-
-        internal static string SQLDB_PORT
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SQLDB_PORT")))
-                {
-                    return Environment.GetEnvironmentVariable("SQLDB_PORT");
+                    return Environment.GetEnvironmentVariable("MSSQL_SERVICE_PORT");
                 }
 
                 return string.Empty;
