@@ -12,11 +12,11 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "SQLDB_PASSWORD": "newuser@123",
-        "SQLDB_SERVER": "192.168.99.100",
-        "SQLDB_USER": "sa",
-        "SQLDB_DATABASE": "MVCPersonDB",
-        "SQLDB_PORT": "1433"
+        "MSSQL_SERVICE_PORT": "1433",
+        "SA_PASSWORD": "newuser@123",
+        "MSSQL_SERVICE_HOST": "127.0.0.1",
+        "DATABASE_NAME": "sampledb",
+        "DATABASE_USER": "sa"
       }
     },
     "web": {
