@@ -39,7 +39,9 @@ namespace Click2Cloud.Samples.AspNetCore.MvcSQLDb
                 }
                 else
                 {
-                    throw new Exception("Environment variables not set.");
+                    string exceptionMessage = "Environment variables not set.\nMissing value for " + (string.IsNullOrEmpty(SA_PASSWORD) ? "SA_PASSWORD " : "") 
+                        + (string.IsNullOrEmpty(DATABASE_NAME) ? "DATABASE_NAME" : "");
+                    throw new Exception(exceptionMessage);
                 }
             }
         }
